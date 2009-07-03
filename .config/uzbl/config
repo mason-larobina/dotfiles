@@ -1,0 +1,206 @@
+# example uzbl config.
+# all settings are optional.  you can use uzbl without any config at all (but it won't do much)
+
+# keyboard behavior is vimstyle by default, but you can change this
+# set always_insert_mode to always be in insert mode and disable going out of it.
+# if you do this, make sure you've set a modkey so you can reach the commands
+# from insert mode by combining them with the modkey
+
+# Usually you want to spawn a script to handle things, but any command (such as sh) can be used
+set history_handler  = spawn $HOME/.uzbl/scripts/history.sh
+set download_handler = spawn $HOME/.uzbl/scripts/download.sh
+set cookie_handler   = spawn $HOME/.uzbl/scripts/cookies.py
+
+# You can bind whatever things (spawn <foo>, script <bar>,..) to some events TODO: make events system more generic
+set load_start_handler = set status_message = <span foreground="khaki">wait</span>
+set load_commit_handler = set status_message = <span foreground="green">recv</span>
+set load_finish_handler = set status_message = <span foreground="gold">done</span>
+
+
+set minimum_font_size = 6
+set font_size = 11
+## monospace_size defaults to font_size, but you can alter it independently
+#set monospace_size = 10
+
+## Display or supress images within html sites
+#set autoload_images = 0
+
+## Shrink images to window size
+#set autoshrink_images = 0
+
+## Spellchecker
+set enable_spellcheck = 1
+
+## Private browsing
+#set enbale_private = 0
+
+## The URI of a stylesheet that is applied to every page
+#set stylesheet_uri = http://www.user.com/mystylelesheet.css
+
+## enable/disable JavaScript
+#set disbale_scripts = 1
+
+## Whether text areas are resizable
+#set resizeable_text_areas = 1
+
+## The default encoding used to display text
+#set default_encoding = iso-8859-1
+
+## Whether background images should be printed
+#set print_background = 0
+
+## Enforce a resolution of 96 DPI. This is meant for compatibility with
+## web pages which cope badly with different screen resolutions
+set enforce_96_dpi = 1
+
+
+#
+# use with bind ... = sh <shell-oneliner>
+set shell_cmd         = sh -c
+
+
+
+# Behaviour and appearance
+set show_status       = 1
+# you can optionally use this setting to override the background color of the statusbar from your GTK theme.
+set status_background = #303030
+set status_format     = <span font_family="monospace"><span background="khaki" foreground="black">[MODE]</span> [<span weight="bold" foreground="red">KEYCMD</span>] <span foreground="#606060"> LOAD_PROGRESSBAR </span><span foreground="#99FF66">URI</span> <span foreground="khaki">NAME</span> <span foreground="orange">MSG</span><span foreground="#606060">SELECTED_URI</span></span>
+set status_top        = 0
+# define how your titlebar should look like. (short = statusbar is also shown, long = show everything you must see if statusbar is off)
+set title_format_short = TITLE - Uzbl browser <NAME>
+set title_format_long = KEYCMD MODE TITLE - Uzbl browser <NAME> > SELECTED_URI
+# set the characters to use for, and the width of the progress bar
+set status_pbar_done  = -
+set status_pbar_pending = /
+set status_pbar_width = 10
+set insert_indicator = I
+set command_indicator = C
+set modkey = Mod1
+# reset to command mode when new page is loaded
+set reset_command_mode = 1
+# this var has precedence over reset_command_mode
+set always_insert_mode = 0
+
+# to start a local socks server, do : ssh -fND localhost:8118 localhost
+#set  proxy_url       = http://127.0.0.1:8118
+#values 0-3
+#set  http_debug      = 0
+#set  useragent       = uzbl (Webkit WEBKIT_MAJOR.WEBKIT_MINOR.WEBKIT_MICRO)
+# Example user agent containing everything:
+set  useragent       = Uzbl (Webkit WEBKIT_MAJOR.WEBKIT_MINOR.WEBKIT_MICRO) (SYSNAME NODENAME KERNREL KERNVER ARCH_SYSTEM [ARCH_UZBL]) (Commit COMMIT)
+#set  max_conns	      = 0
+#set  max_conns_host  = 0
+
+set fifo_dir = /tmp
+set socket_dir = /tmp
+
+# Key bindings
+bind    j         = scroll_vert 20
+bind    k         = scroll_vert -20
+bind    h         = scroll_horz -20
+bind    l         = scroll_horz 20
+bind    <<        = scroll_begin
+bind    >>        = scroll_end
+bind    b         = back
+bind    m         = forward
+bind    S         = stop
+bind    r         = reload
+bind    R         = reload_ign_cache
+bind    +         = zoom_in
+bind    -         = zoom_out
+bind    T         = toggle_zoom_type
+bind    1         = sh "echo set zoom_level = 1.0 > $4"
+bind    2         = sh "echo set zoom_level = 2.0 > $4"
+bind    t         = toggle_status
+# Hilight matches. Notice the * after the slash - it makes the command incremental, i.e. gets called
+# on every character you type.  You can do `bind /_ = search %s' if you want it less interactive.
+bind    /*        = search %s
+bind    ?*        = search_reverse %s
+#jump to next
+bind    n         = search
+bind    N         = search_reverse
+bind    gh        = uri http://www.uzbl.org
+
+# like this you can enter any command at runtime, interactively. prefixed by ':'
+bind    :_        = chain '%s'
+
+# shortcut to set the uri. TODO: i think we can abandon the uri command in favor of 'set uri = ..'
+bind    o _       = uri %s
+# shortcut to set variables
+bind    s _       = set %s
+bind    awiki _   = uri http://wiki.archlinux.org/index.php/Special:Search?search=%s&go=Go
+bind    gwiki _   = uri http://en.gentoo-wiki.com/w/index.php?title=Special%3ASearch&search=%s&go=Go
+bind    wiki _    = uri http://en.wikipedia.org/wiki/Special:Search?search=%s&go=Go
+bind    gg _      = uri http://www.google.com/search?q=%s
+bind    i         = toggle_insert_mode
+# disable insert mode (1 to enable).  note that Esc works to disable, regardless of this setting
+bind    I         = toggle_insert_mode 0
+# Enclose the executable in quotes if it has spaces.  Any additional parameters you use will
+# appear AFTER the default parameters
+bind    B         = spawn $HOME/.uzbl/scripts/insert_bookmark.sh
+bind    U         = spawn $HOME/.uzbl/scripts/load_url_from_history.sh
+bind    u         = spawn $HOME/.uzbl/scripts/load_url_from_bookmarks.sh
+# with the sample yank script, you can yank one of the arguments into clipboard/selection
+bind    yurl      = spawn $HOME/.uzbl/scripts/yank.sh 6 primary
+bind    ytitle    = spawn $HOME/.uzbl/scripts/yank.sh 7 clipboard
+# does the same as yurl but without needing a script
+bind    y2url     = sh 'echo -n $6 | xclip'
+# go the page from primary selection
+bind    p         = sh 'echo "uri `xclip -selection primary -o`" > $4'
+# go to the page in clipboard
+bind    P         = sh 'echo "uri `xclip -selection clipboard -o`" > $4'
+# start a new uzbl instance from the page in primary selection
+bind    'p        = sh 'exec uzbl --uri $(xclip -o)'
+bind    ZZ        = exit
+bind    Xs         = js alert("hi");
+# example showing how to use sh
+# it sends a command to the fifo, whose path is told via a positional param
+# if fifo_dir is not set, it'll echo to a file named (null) somewhere >:) remember to delete it
+# The body of the shell command should be one parameter, so if it has spaces like here,
+# you must enclose it in quotes.  Remember to escape (and double-escape) quotes and backslashes
+# in the body.  Any additional parameters you use will appear AFTER the default parameters (cfg file
+# path, fifo & socket dirs, etc.)
+bind    XS        = sh 'echo "js alert (\\"This is sent by the shell via a fifo\\")" > "$4"'
+
+bind    !dump     = sh "echo dump_config > $4"
+bind    !reload   = sh 'cat $1 > $4'
+bind    abc1    = sh 'echo "Testing 1 2 3"'
+# this script allows you to configure (per domain) values to fill in form fields (eg login information) and to fill in these values automatically
+bind za = spawn $HOME/.uzbl/scripts/formfiller.sh
+bind ze = spawn $HOME/.uzbl/scripts/formfiller.sh edit
+bind zn = spawn $HOME/.uzbl/scripts/formfiller.sh new
+bind zl = spawn $HOME/.uzbl/scripts/formfiller.sh load
+
+# other - more advanced - implementation using perl: (could not get this to run - Dieter )
+bind LL = spawn $HOME/.uzbl/scripts/formfiller.pl load
+bind LN = spawn $HOME/.uzbl/scripts/formfiller.pl new
+bind LE = spawn $HOME/.uzbl/scripts/formfiller.pl edit
+
+# we ship some javascripts to do keyboard based link hinting/following.  (webkit does not have C DOM bindings yet)
+# this is similar to how it works in vimperator (and konqueror)
+# TODO: did we resolve: "no click() event for hyperlinks so no referrer set" ?
+#hit F to toggle the Hints (now in form of link numbering)
+bind    F = script $HOME/.uzbl/scripts/hint.js
+# the most stable version:
+bind    fl* = script $HOME/.uzbl/scripts/follow_Numbers.js %s
+# using strings, not polished yet:
+bind    fL* = script $HOME/.uzbl/scripts/follow_Numbers_Strings.js %s
+
+# you can use this to disable all plugins
+set disable_plugins = 0
+
+set icon = $HOME/.uzbl/uzbl.png
+
+# "home" page if you will
+set uri = google.com.au
+
+set show_gtk_tabs = 0
+
+set tablist_top = 1
+set show_tablist = 1
+set show_gtk_tabs = 0 
+set gtk_tab_pos = right
+set max_title_len = 25
+set tab_titles = 1
+bind gmail = set uri = https://gmail.com/
+
