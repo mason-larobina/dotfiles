@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Launch cookie_daemon.py if the cookie socket doesn't exist
+[[ -f ~/.cache/uzbl/cookie_daemon_socket ]] || ~/.local/share/uzbl/scripts/cookie_daemon.py
+
+# Launch uzbl
+uzbl $@

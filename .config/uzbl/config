@@ -16,7 +16,7 @@ set load_start_handler = set status_message = <span foreground="khaki">wait</spa
 set load_commit_handler = set status_message = <span foreground="green">recv</span>
 set load_finish_handler = set status_message = <span foreground="gold">done</span>
 
-
+set enforce_96_dpi = 1
 # Behaviour and appearance
 set show_status       = 1
 set status_background = #303030
@@ -87,6 +87,7 @@ bind    y2url     = sh 'echo -n $6 | xclip'
 bind    p         = sh 'echo "uri `xclip -selection primary -o`" > $4'
 # go to the page in clipboard
 bind    P         = sh 'echo "uri `xclip -selection clipboard -o`" > $4'
+
 # start a new uzbl instance from the page in primary selection
 bind    'p        = sh 'exec uzbl --uri $(xclip -o)'
 bind    ZZ        = exit
@@ -126,7 +127,6 @@ bind    fl* = script $HOME/.uzbl/scripts/follow_Numbers.js %s
 bind    fL* = script $HOME/.uzbl/scripts/follow_Numbers_Strings.js %s
 
 bind gmail = uri https://mail.google.com/
-
 
 # "home" page if you will
 set uri = http://reddit.com/
