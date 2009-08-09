@@ -6,4 +6,4 @@ PROMPT_COMMAND="${PROMPT_COMMAND:+$PROMPT_COMMAND ; }"'echo $$ $USER \ "$(histor
 
 source ~/.bash_profile
 
-export PATH="$PATH:~/.bin"
+export PATH="~/.bin:$PATH"

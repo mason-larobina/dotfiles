@@ -1,7 +1,7 @@
 ! To save run xrdb -all ~/.Xresources
 
 
-URxvt*background:     #121212
+URxvt*background:     #1c1c1c
 !black
 URxvt*color0:         #353535
 URxvt*color8:         #666666
@@ -30,7 +30,7 @@ URxvt*color14:        #F0E68C
 URxvt*color7:         #DDDDDD
 URxvt*color15:        #FFFFFF
 
-*foreground: #DDDDDD
+URxvt*foreground: #DDDDDD
 
 URxvt*scrollBar: false
 URxvt*secondaryScroll: true
