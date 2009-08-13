@@ -2,7 +2,7 @@ set title
 set hlsearch
 set number
 set foldmethod=marker
-filetype plugin on
+filetype plugin indent on
 
 
 if &t_Co == 256

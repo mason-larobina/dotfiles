@@ -134,3 +134,16 @@ set uri = http://reddit.com/
 # uzbl_tabbed.py settings.
 set json_session = 1
 
+
+set bind_new_tab            = gn
+set bind_tab_from_clip      = gY
+set bind_tab_from_uri       = go _
+set bind_close_tab          = gC
+set bind_next_tab           = gt
+set bind_prev_tab           = gT
+set bind_goto_tab           = gi_
+set bind_goto_first         = g<
+set bind_goto_last          = g>
+set bind_clean_slate        = gQ
+
+
