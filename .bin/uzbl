@@ -1,7 +1,8 @@
 #!/bin/bash
  
 # Launch cookie_daemon.py in daemon mode if the default cookie socket doesn't exist
-[[ -S $XDG_CACHE_HOME/uzbl/cookie_daemon_socket ]] || $XDG_DATA_HOME/uzbl/scripts/cookie_daemon.py -v
- 
+#[[ -S $XDG_CACHE_HOME/uzbl/cookie_daemon_socket ]] || /usr/share/uzbl/examples/data/uzbl/scripts/cookie_daemon.py -v
+/usr/share/uzbl/examples/data/uzbl/scripts/cookie_daemon.py -v
+
 # Launch uzbl directly
 /usr/bin/uzbl $@

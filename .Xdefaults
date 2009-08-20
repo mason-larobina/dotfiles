@@ -35,7 +35,7 @@ URxvt*foreground: #DDDDDD
 URxvt*scrollBar: false
 URxvt*secondaryScroll: true
 URxvt*saveLines: 4000
-URxvt*scrollTtyKeypress: true
+URxvt*scrollTtyKeypress: false
 URxvt*scrollWithBuffer: false
 URxvt*font: xft:Monospace:pixelsize=11
 
