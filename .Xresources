@@ -73,4 +73,4 @@ URxvt.cursorBlink:          true
 URxvt.pointerBlank:         true
 URxvt.loginShell:           true
 !URxvt.utf8: 2
-URxvt.inputMethod: scim
+!URxvt.inputMethod:         scim
