@@ -1,78 +1,85 @@
 ! To save run xrdb -all ~/.Xresources
 
-
 ! === Appearance =============================================================
 
 !black
-URxvt.color0:               #353535
-URxvt.color8:               #666666
+urxvt.color0:               #353535
+urxvt.color8:               #666666
 
 !red
-URxvt.color1:               #C73737
-URxvt.color9:               #EE6363
+urxvt.color1:               #C73737
+urxvt.color9:               #EE6363
 
 !green
-URxvt.color2:               #79a035
-URxvt.color10:              #9ACD32
+urxvt.color2:               #79a035
+urxvt.color10:              #9ACD32
 
 !brown/yellow
-URxvt.color3:               #DAA520
-URxvt.color11:              #FFC125
+urxvt.color3:               #DAA520
+urxvt.color11:              #FFC125
 
 !blue
-URxvt.color4:               #6F99B4
-URxvt.color12:              #7C96B0
+urxvt.color4:               #6F99B4
+urxvt.color12:              #7C96B0
 
 !magenta
-URxvt.color5:               #8B7B8B
-URxvt.color13:              #D8BFD8
+urxvt.color5:               #8B7B8B
+urxvt.color13:              #D8BFD8
 
 !cyan
-URxvt.color6:               #A7A15E
-URxvt.color14:              #F0E68C
+urxvt.color6:               #A7A15E
+urxvt.color14:              #F0E68C
 
 !white
-URxvt.color7:               #DDDDDD
-URxvt.color15:              #FFFFFF
+urxvt.color7:               #DDDDDD
+urxvt.color15:              #FFFFFF
 
-URxvt.background:           #1c1c1c
-URxvt.foreground:           #DDDDDD
+!urxvt.background:           rgb:1c/1c/1c
+urxvt.background:           rgba:0000/0000/0000/8888
+urxvt.foreground:           #DDDDDD
+
+urxvt.transparent:          True
+urxvt.inheritPixmap:        True
+urxvt.internalBorder:       6
 
 ! === Scrolling options ======================================================
 
-URxvt.buffered:             true
-URxvt.scrollBar:            false
-URxvt.scrollstyle:          plain
-URxvt.secondaryScroll:      false
-URxvt.jumpScroll:           false
-URxvt.saveLines:            4000
-URxvt.scrollTtyKeypress:    true
-URxvt.scrollTtyOutput:      false
-URxvt.scrollWithBuffer:     false
+urxvt.buffered:             true
+urxvt.jumpScroll:           false
+urxvt.saveLines:            4000
+urxvt.scrollBar:            false
+urxvt.scrollTtyKeypress:    true
+urxvt.scrollTtyOutput:      false
+urxvt.scrollWithBuffer:     false
+urxvt.scrollstyle:          plain
+urxvt.secondaryScroll:      false
 
 ! === Font options ===========================================================
 
-!URxvt.font:                xft:Terminus:pixelsize=13
-URxvt.font:                 xft:Monospace:pixelsize=11
-URxvt.xftAntialias:         true
-!URxvt.skipBuiltinGlyphs:    true
+!urxvt.font:                 xft:Terminus:pixelsize=13
+urxvt.font:                 xft:Monospace:pixelsize=11
+!urxvt.xftAntialias:         true
+!urxvt.skipBuiltinGlyphs:    true
 xft.antialias:              true
 xft.dpi:                    72
-xft.hinting:                full
+xft.rgba:                   rgb
+urxvt.depth:                32
 
 ! === Url opening ============================================================
 
-URxvt.perl-ext:             default,matcher
-URxvt.cutchars:             `"()'*<>[]{|}"
-URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
-URxvt.matcher.button:       1
-URxvt.urlLauncher:          uzbl-browser
+urxvt.perl-ext:             default,matcher
+urxvt.cutchars:             `"()'*<>[]{|}"
+urxvt.matcher.pattern.1:    \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
+urxvt.matcher.button:       1
+urxvt.urlLauncher:          uzbl-browser
 
 ! === Misc ===================================================================
 
-URxvt.resource:             value
-URxvt.cursorBlink:          true
-URxvt.pointerBlank:         true
-URxvt.loginShell:           true
-!URxvt.utf8: 2
-!URxvt.inputMethod:         scim
+urxvt.cursorBlink:          true
+urxvt.loginShell:           true
+urxvt.mapAlert:             true
+urxvt.pointerBlank:         true
+urxvt.resource:             value
+urxvt.urgentOnBell:         true
+!urxvt.utf8: 2
+!urxvt.inputMethod:         scim

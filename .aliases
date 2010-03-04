@@ -1,0 +1,9 @@
+#!/bin/bash
+
+alias ack="ack -a -C 4"
+alias l="ls -al"
+alias p="python -m cProfile"
+
+alias data="cd ~/.local/share/"
+alias cache="cd ~/.cache/"
+alias config="cd ~/.config/"

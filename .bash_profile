@@ -10,11 +10,9 @@ if [ "$COLORTERM" == "gnome-terminal" ] || [ "$TERM" == "rxvt-unicode" ]; then
     export TERM=xterm-256color;
 fi
 
-# Aliases.
-alias l="ls -al"
-
 # Env variables.
 PS1='\[\e[40m\]\[\e[1;37m\] \u \[\e[47m\]\[\e[1;30m\] \w \[\e[0m\]\[\e[1;37m\]\[\e[42m\] > \[\e[0m\] '
 PATH="~/.bin/:$PATH"
 
-alias p="python -m cProfile"
+# Load aliases
+source .aliases

@@ -13,5 +13,5 @@ noremap <silent><F10> :set spell!<CR>
 noremap <silent><F9> :set paste!<CR>
 
 if &t_Co == 256
-	colorscheme xoria256
+	colorscheme xoria256-nobg
 endif
