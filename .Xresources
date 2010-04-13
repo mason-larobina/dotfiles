@@ -7,16 +7,16 @@ urxvt.color0:               #353535
 urxvt.color8:               #666666
 
 !red
-urxvt.color1:               #C73737
-urxvt.color9:               #EE6363
+urxvt.color1:               #D81860
+urxvt.color9:               #F00060
 
 !green
-urxvt.color2:               #79a035
-urxvt.color10:              #9ACD32
+urxvt.color2:               #B7CE42
+urxvt.color10:              #BDE077
 
 !brown/yellow
-urxvt.color3:               #DAA520
-urxvt.color11:              #FFC125
+urxvt.color3:               #FEA63C
+urxvt.color11:              #FFE863
 
 !blue
 urxvt.color4:               #6F99B4
@@ -34,8 +34,7 @@ urxvt.color14:              #F0E68C
 urxvt.color7:               #DDDDDD
 urxvt.color15:              #FFFFFF
 
-!urxvt.background:           rgb:1c/1c/1c
-urxvt.background:           rgba:0000/0000/0000/8888
+urxvt.background:           #212021
 urxvt.foreground:           #DDDDDD
 
 urxvt.transparent:          True
@@ -56,14 +55,14 @@ urxvt.secondaryScroll:      false
 
 ! === Font options ===========================================================
 
-!urxvt.font:                 xft:Terminus:pixelsize=13
-urxvt.font:                 xft:Monospace:pixelsize=11
-!urxvt.xftAntialias:         true
+urxvt.font:                 xft:Terminus:pixelsize=13
+!urxvt.font:                 xft:Monospace:pixelsize=11
+urxvt.xftAntialias:         true
 !urxvt.skipBuiltinGlyphs:    true
 xft.antialias:              true
-xft.dpi:                    72
-xft.rgba:                   rgb
-urxvt.depth:                32
+xft.dpi:                    96
+!xft.rgba:                   rgb
+!urxvt.depth:                32
 
 ! === Url opening ============================================================
 

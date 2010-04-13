@@ -70,7 +70,7 @@ mynetmenu = {
 
 myappmenu = {
     { "thunar", "thunar" },
-    { "amarok", "amarok" },
+    { "exaile", "exaile" },
 }
 
 mymainmenu = awful.menu({

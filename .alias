@@ -1,0 +1,7 @@
+alias ls='ls --color=auto'
+alias l='ls --color=auto -al'
+alias xr='xrdb -all ~/.Xresources'
+alias py='python'
+alias tu='cd ~/src/uzbl && make test-uzbl-browser-sandbox'
+alias ack="ack -a -C 3"
+alias pr="python -m cProfile"
