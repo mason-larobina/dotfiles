@@ -8,8 +8,12 @@ export XDG_CACHE_HOME="/home/$USER/.cache"
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-# Load keys
-eval `keychain --eval --nogui -Q -q ~/.ssh/id_dsa`
+if [ $TERM == 'rxvt-unicode' ]; then export TERM="xterm-256color"; fi
+
+# Load keychain
+keychain id_dsa
+. ~/.keychain/$HOSTNAME-sh
+clear
 
 source ~/.alias
 
@@ -47,6 +51,5 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
-#PS1="\[${txtgrn}\]\u\[${txtcyn}\]@\h \[${txtpur}\]\w\[${txtrst}\]\n\[${txtblu}\]>\[${txtrst}\] "
 PS1="\[${txtcyn}\]\w\[${txtrst}\]\n\[${txtblu}\]>\[${txtrst}\] "
 PS2="\[${txtblk}\]. \[${txtrst}\]"
