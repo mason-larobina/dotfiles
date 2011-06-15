@@ -49,5 +49,5 @@ bakcyn='\e[46m'   # Cyan
 bakwht='\e[47m'   # White
 txtrst='\e[0m'    # Text Reset
 
-PS1="\[${txtcyn}\]\w\[${txtrst}\]\n\[${txtblu}\]>\[${txtrst}\] "
+PS1="\[${txtcyn}\]\w\[${txtrst}\] \[${txtblu}\]>\[${txtrst}\] "
 PS2="\[${txtblk}\]. \[${txtrst}\]"
