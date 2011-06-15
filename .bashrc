@@ -8,8 +8,6 @@ export XDG_CACHE_HOME="/home/$USER/.cache"
 # Check for an interactive session
 [ -z "$PS1" ] && return
 
-if [ $TERM == 'rxvt-unicode' ]; then export TERM="xterm-256color"; fi
-
 # Load keychain
 keychain id_dsa
 . ~/.keychain/$HOSTNAME-sh
