@@ -2,65 +2,57 @@
 
 ! === X f t ==================================================================
 
-Xft.autohint:               0
-Xft.antialias:              1
-Xft.hinting:                1
-Xft.hintstyle:              hintfull
-Xft.lcdfilter:              lcddefault
-Xft.rgba:                   rgb
-Xft.dpi:                    112
+Xft.antialias:          1
+Xft.autohint:           0
+Xft.dpi:                112
+Xft.hinting:            1
+Xft.hintstyle:          hintfull
+Xft.lcdfilter:          lcddefault
+Xft.rgba:               rgb
 
 ! === U R x v t ==============================================================
 
-URxvt.termName:             xterm-256color
-URxvt.font:                 xft:Terminus:pixelsize=13
-URxvt.depth:                24
-URxvt.cursorBlink:          true
-URxvt.loginShell:           true
-URxvt.mapAlert:             true
-URxvt.pointerBlank:         true
-URxvt.resource:             value
-URxvt.urgentOnBell:         true
-URxvt.transparent:          True
-URxvt.inheritPixmap:        True
-URxvt.internalBorder:       6
+URxvt.cursorBlink:      true
+URxvt.depth:            24
+URxvt.font:             xft:Terminus:pixelsize=13
+URxvt.inheritPixmap:    true
+URxvt.internalBorder:   4
+URxvt.loginShell:       true
+URxvt.mapAlert:         true
+URxvt.pointerBlank:     true
+URxvt.resource:         value
+URxvt.termName:         xterm-256color
+URxvt.transparent:      true
+URxvt.urgentOnBell:     true
 
 ! === Appearance =============================================================
 
-!black
-URxvt.color0:               #353535
-URxvt.color8:               #666666
-
-!red
-URxvt.color1:               #D81860
-URxvt.color9:               #F00060
-
-!green
-URxvt.color2:               #B7CE42
-URxvt.color10:              #BDE077
-
-!brown/yellow
-URxvt.color3:               #FEA63C
-URxvt.color11:              #FFE863
-
-!blue
-URxvt.color4:               #6F99B4
-URxvt.color12:              #7C96B0
-
-!magenta
-URxvt.color5:               #8B7B8B
-URxvt.color13:              #D8BFD8
-
-!cyan
-URxvt.color6:               #A7A15E
-URxvt.color14:              #F0E68C
-
-!white
-URxvt.color7:               #DDDDDD
-URxvt.color15:              #FFFFFF
-
-URxvt.background:           #212021
-URxvt.foreground:           #DDDDDD
+URxvt.foreground:       #D7D0C7
+URxvt.background:       #151515
+! Black
+URxvt.color0:           #303030
+URxvt.color8:           #404040
+! Red
+URxvt.color1:           #E84F4F
+URxvt.color9:           #D23D3D
+! Green
+URxvt.color2:           #B8D68C
+URxvt.color10:          #A0CF5D
+! Yellow
+URxvt.color3:           #E1AA5D
+URxvt.color11:          #F39D21
+! Blue
+URxvt.color4:           #7DC1CF
+URxvt.color12:          #4E9FB1
+! Magenta
+URxvt.color5:           #9B64FB
+URxvt.color13:          #8542FF
+! Cyan
+URxvt.color6:           #6D878D
+URxvt.color14:          #42717B
+! White
+URxvt.color7:           #dddddd
+URxvt.color15:          #dddddd
 
 ! === Scrolling ==============================================================
 
