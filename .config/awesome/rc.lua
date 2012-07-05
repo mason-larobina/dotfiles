@@ -147,6 +147,7 @@ for s = 1, screen.count() do
 
     -- Create the wibox
     mywibox[s] = awful.wibox({ position = "top", screen = s })
+
     -- Add widgets to the wibox - order matters
     mywibox[s].widgets = {
         {
@@ -205,6 +206,10 @@ globalkeys = awful.util.table.join(
 
     -- Standard program
     awful.key({ modkey,           }, "Return", function () awful.util.spawn(terminal) end),
+    awful.key({ modkey,           }, "l",      function () awful.util.spawn("luakit") end),
+    awful.key({ modkey,           }, "t",      function () awful.util.spawn("thunar") end),
+    awful.key({ modkey,           }, "a",      function () awful.util.spawn(terminal .. " -e alsamixer") end),
+    awful.key({ modkey,           }, "w",      function () awful.util.spawn(terminal .. " -e wicd-curses") end),
     awful.key({ modkey, "Control" }, "r", awesome.restart),
     awful.key({ modkey, "Shift"   }, "q", awesome.quit),
 

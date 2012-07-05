@@ -2,9 +2,10 @@
 
 ! === X f t ==================================================================
 
-Xft.antialias:          1
+Xft.antialias:          true
 Xft.autohint:           0
-Xft.dpi:                112
+!Xft.dpi:                112
+Xft.dpi:                90
 Xft.hinting:            1
 Xft.hintstyle:          hintfull
 Xft.lcdfilter:          lcddefault
@@ -14,7 +15,8 @@ Xft.rgba:               rgb
 
 URxvt.cursorBlink:      true
 URxvt.depth:            24
-URxvt.font:             xft:Terminus:pixelsize=13
+URxvt.font:             xft:Terminus:pixelsize=13:antialias=false
+!URxvt.font:             xft:Monospace:pixelsize=20
 URxvt.inheritPixmap:    true
 URxvt.internalBorder:   4
 URxvt.loginShell:       true
@@ -73,3 +75,6 @@ URxvt.cutchars:             `"()'*<>[]{|}"
 URxvt.matcher.pattern.1:    \\bwww\\.[\\w-]\\.[\\w./?&@#-]*[\\w/-]
 URxvt.matcher.button:       1
 URxvt.urlLauncher:          luakit
+
+
+xscreensaver.splash: false

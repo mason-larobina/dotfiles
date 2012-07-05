@@ -1,9 +1,15 @@
 # Export environ vars.
 export EDITOR="vim"
-export PATH="/home/$USER/.bin:$PATH"
+export PATH="~/bin:$PATH"
 export XDG_DATA_HOME="/home/$USER/.local/share"
 export XDG_CONFIG_HOME="/home/$USER/.config"
 export XDG_CACHE_HOME="/home/$USER/.cache"
+export XDG_DOWNLOAD_DIR="/home/$USER/downloads"
+
+# Erase history duplicates, store 10k lines, append hist
+export HISTCONTROL=erasedups
+export HISTSIZE=10000
+shopt -s histappend
 
 # Check for an interactive session
 [ -z "$PS1" ] && return
@@ -13,41 +19,52 @@ keychain id_dsa
 . ~/.keychain/$HOSTNAME-sh
 clear
 
-source ~/.alias
+alias ls='ls --color=auto'
+alias l='ls --color=auto -Glh'
+alias xr='xrdb -all ~/.Xresources'
+alias ack="ack -a -C 3"
+alias mklk="make clean && USE_UNIQUE=0 USE_LUAJIT=1 CC=clang make luakit -j4"
 
-txtblk='\e[0;30m' # Black - Regular
-txtred='\e[0;31m' # Red
-txtgrn='\e[0;32m' # Green
-txtylw='\e[0;33m' # Yellow
-txtblu='\e[0;34m' # Blue
-txtpur='\e[0;35m' # Purple
-txtcyn='\e[0;36m' # Cyan
-txtwht='\e[0;37m' # White
-bldblk='\e[1;30m' # Black - Bold
-bldred='\e[1;31m' # Red
-bldgrn='\e[1;32m' # Green
-bldylw='\e[1;33m' # Yellow
-bldblu='\e[1;34m' # Blue
-bldpur='\e[1;35m' # Purple
-bldcyn='\e[1;36m' # Cyan
-bldwht='\e[1;37m' # White
-unkblk='\e[4;30m' # Black - Underline
-undred='\e[4;31m' # Red
-undgrn='\e[4;32m' # Green
-undylw='\e[4;33m' # Yellow
-undblu='\e[4;34m' # Blue
-undpur='\e[4;35m' # Purple
-undcyn='\e[4;36m' # Cyan
-undwht='\e[4;37m' # White
-bakblk='\e[40m'   # Black - Background
-bakred='\e[41m'   # Red
-badgrn='\e[42m'   # Green
-bakylw='\e[43m'   # Yellow
-bakblu='\e[44m'   # Blue
-bakpur='\e[45m'   # Purple
-bakcyn='\e[46m'   # Cyan
-bakwht='\e[47m'   # White
-txtrst='\e[0m'    # Text Reset
+# Load colours for PS1
+. ~/bin/bash_colours.sh
 
-PS1="\[${txtblk}\]\w\[${txtrst}\] \[${txtblu}\]>\[${txtrst}\] "
-PS2="\[${txtblk}\]. \[${txtrst}\]"
+function minutes_since_last_commit {
+    now=`date +%s`
+    last_commit=`git log --pretty=format:'%at' -1`
+    seconds_since_last_commit=$((now-last_commit))
+    minutes_since_last_commit=$((seconds_since_last_commit/60))
+    echo $minutes_since_last_commit
+}
+
+grb_git_prompt() {
+    local g="$(__gitdir)"
+    if [ -n "$g" ]; then
+        local LAST=`minutes_since_last_commit`
+
+        if [ "$LAST" -gt 43200 ]; then
+            local COLOR=${txtred}
+            local SINCE_LAST_COMMIT="${COLOR}$((LAST/43200))M${txtrst}"
+
+        elif [ "$LAST" -gt 1440 ]; then
+            local COLOR=${txtblu}
+            local SINCE_LAST_COMMIT="${COLOR}$((LAST/1440))d${txtrst}"
+
+        elif [ "$LAST" -gt 60 ]; then
+            local COLOR=${txtpur}
+            local SINCE_LAST_COMMIT="${COLOR}$((LAST/60))h${txtrst}"
+
+        else
+            local COLOR=${txtgrn}
+            local SINCE_LAST_COMMIT="${COLOR}${LAST}m${txtrst}"
+        fi
+
+        # The __git_ps1 function inserts the current git branch where %s is
+        local GIT_PROMPT=`__git_ps1 "(%s ${SINCE_LAST_COMMIT})"`
+        echo "${GIT_PROMPT} "
+    fi
+}
+
+PS1="\[${txtgrn}\]\w\[${txtrst}\] \$(grb_git_prompt)\[${txtblu}\]>\[${txtrst}\] "
+PS2="\[${txtgrn}\]. \[${txtrst}\]"
+
+source ~/bin/git-completion.bash
