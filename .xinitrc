@@ -1,8 +1,9 @@
 #!/bin/sh
 xset fp rehash
-xset r rate 150 100
+xset r rate 250 50
+xscreensaver -no-splash &
 xset +dpms
 xset dpms 0 0 300
-xrdb -all .Xresources
+xrdb -merge .Xresources
 xmodmap .Xmodmap
 exec ck-launch-session awesome
