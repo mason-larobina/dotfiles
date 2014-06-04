@@ -42,6 +42,7 @@ augroup resCur
 augroup END
 
 set foldmethod=marker
+
 set wildmode=longest,list,full
 set wildmenu
 
@@ -58,10 +59,6 @@ inoremap <C-U> <C-G>u<C-U>
 nnoremap <silent><F3> :set number!<CR>
 noremap <silent><F10> :set spell!<CR>
 noremap <silent><F9>  :set paste!<CR>
-
-if has('mouse')
-  set mouse=a
-endif
 
 " Move around splits with <c-hjkl>
 nnoremap <c-j> <c-w>j
@@ -83,15 +80,8 @@ call MapCR()
 
 " Force 256 colors
 set t_Co=256
-colorscheme myxoria256
 
-" Convenient command to see the difference between the current buffer and the
-" file it was loaded from, thus the changes you made.
-" Only define it when not defined already.
-if !exists(":DiffOrig")
-  command DiffOrig vert new | set bt=nofile | r # | 0d_ | diffthis
-    \ | wincmd p | diffthis
-endif
+colorscheme molokai
 
 " Disable arrow keys
 map <Left>  <Nop>
@@ -102,3 +92,10 @@ map <ESC>Od <Nop>
 map <ESC>Oc <Nop>
 map <ESC>Oa <Nop>
 map <ESC>Ob <Nop>
+
+highlight ExtraWhitespace ctermbg=red guibg=red
+match ExtraWhitespace /\s\+$/
+autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
+autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
+autocmd InsertLeave * match ExtraWhitespace /\s\+$/
+autocmd BufWinLeave * call clearmatches()
