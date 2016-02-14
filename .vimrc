@@ -1,5 +1,12 @@
 syntax on
 set nocompatible
+
+" Vundle
+filetype off
+call vundle#rc()
+Bundle 'Valloric/YouCompleteMe'
+Plugin 'rust-lang/rust.vim'
+
 set ruler
 set backspace=indent,eol,start
 
