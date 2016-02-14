@@ -1,0 +1,8 @@
+xset fp rehash
+xset r rate 250 50
+xset +dpms
+xset dpms 0 0 300
+
+xscreensaver -no-splash &
+
+xcompmgr -c &
