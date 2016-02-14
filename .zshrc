@@ -119,6 +119,7 @@ alias less='less -FRSXQ'
 alias ls='ls --color=auto'
 alias psgrep='ps aux | grep'
 alias vim='vim -O'
+alias g='git'
 
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -128,5 +129,9 @@ alias .....='cd ../../../..'
 function t() { d="/home/$USER/`date +'%Y/%m/%d'`"; mkdir -p $d && cd $d ; }
 
 #}}}
+
+export RUST_SRC_PATH=${HOME}/.multirust/toolchains/nightly/src
+
+eval `keychain --eval id_rsa`
 
 doge
