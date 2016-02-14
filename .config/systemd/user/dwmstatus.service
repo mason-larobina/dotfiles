@@ -1,0 +1,6 @@
+[Unit]
+Description=Updates dwm title
+
+[Service]
+Type=oneshot
+ExecStart=/home/masonl/src/dwmstatus-rs/target/release/dwmstatus
