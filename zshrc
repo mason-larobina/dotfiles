@@ -1,7 +1,5 @@
 [[ $- != *i* ]] && return # non-interactive
 
-#{{{ colours
-
 autoload -U colors && colors
 
 local txtblk='[0;30m' # Black
@@ -46,9 +44,6 @@ c() {
   builtin printf '[38;5;%dm' $1
 }
 
-#}}}
-#{{{ completion
-
 autoload -Uz compinit
 compinit
 
@@ -73,15 +68,7 @@ zstyle ':completion:*:warnings' format '%BSorry, no matches for: %d%b'
 zstyle ':completion:*:*:kill:*:processes' list-colors '=(#b) #([0-9]#)*=0=01;31'
 zstyle ':completion:*:kill:*' command 'ps -u $USER -o pid,%cpu,tty,cputime,cmd'
 
-#}}}
-#{{{ environ
-
-export EDITOR=vim
-
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-#}}}
-#{{{ setopt
+export EDITOR=nvim
 
 setopt histignorealldups sharehistory
 HISTSIZE=1000000
@@ -103,35 +90,30 @@ setopt autocd
 setopt extendedglob
 setopt interactivecomments
 
-#}}}
-#{{{ PS1
-
 precmd() {
   PS1="%{`c 2`%}%~%{${txtrst}%}\$ "
 }
 
-#}}}
-#{{{ aliases
-
-alias ack='ack-grep -C3'
+alias .....='cd ../../../..'
+alias ....='cd ../../..'
+alias ...='cd ../..'
+alias ..='cd ..'
+alias blaze='bazel'
+alias g='git'
 alias grep='grep --color=auto'
 alias less='less -FRSXQ'
 alias ls='ls --color=auto'
-alias psgrep='ps aux | grep'
-alias vim='vim -O'
-alias g='git'
-
-alias ..='cd ..'
-alias ...='cd ../..'
-alias ....='cd ../../..'
-alias .....='cd ../../../..'
+alias n=nvim
+alias rsync='rsync --info=progress2'
+alias vim='vim'
 
 function t() { d="/home/$USER/`date +'%Y/%m/%d'`"; mkdir -p $d && cd $d ; }
 
-#}}}
-
-export RUST_SRC_PATH=${HOME}/.multirust/toolchains/nightly/src
+export PATH="$HOME/.cargo/bin:$PATH"
+export PATH="$HOME/bin:$PATH"
 
 eval `keychain --eval id_rsa`
+
+export _JAVA_OPTIONS='-Dawt.useSystemAAFontSettings=on -Dswing.aatext=true -Dswing.defaultlaf=com.sun.java.swing.plaf.gtk.GTKLookAndFeel'
 
 doge

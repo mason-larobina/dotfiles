@@ -12,7 +12,7 @@
   # available, otherwise `xterm-256color` is used.
   #TERM: alacritty
 
-#window:
+window:
   # Window dimensions (changes require restart)
   #
   # Specified in number of columns/lines, not pixels.
@@ -38,7 +38,7 @@
   #  y: 0
 
   # Spread additional padding evenly around the terminal content.
-  #dynamic_padding: false
+  dynamic_padding: true
 
   # Window decorations
   #
@@ -49,7 +49,7 @@
   # Values for `decorations` (macOS only):
   #     - transparent: Title bar, transparent background and title bar buttons
   #     - buttonless: Title bar, transparent background, but no title bar buttons
-  #decorations: full
+  decorations: none
 
   # Startup Mode (changes require restart)
   #
@@ -66,7 +66,7 @@
   #title: Alacritty
 
   # Allow terminal applications to change Alacritty's window title.
-  #dynamic_title: true
+  dynamic_title: true
 
   # Window class (Linux/BSD only):
   #class:
@@ -81,10 +81,10 @@
   # Set this to `None` to use the default theme variant.
   #gtk_theme_variant: None
 
-#scrolling:
+scrolling:
   # Maximum number of lines in the scrollback buffer.
   # Specifying '0' will disable scrolling.
-  #history: 10000
+  history: 0
 
   # Scrolling distance multiplier.
   #multiplier: 3
@@ -99,7 +99,8 @@ font:
     #   - (macOS) Menlo
     #   - (Linux/BSD) monospace
     #   - (Windows) Consolas
-    family: terminus
+    #family: monospace
+    family: "Terminus"
 
     # The `style` can be specified to pick a specific face.
     #style: Regular
@@ -110,7 +111,8 @@ font:
     #
     # If the bold family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: terminus
+    #family: monospace
+    family: "Terminus"
 
     # The `style` can be specified to pick a specific face.
     #style: Bold
@@ -121,7 +123,8 @@ font:
     #
     # If the italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: terminus
+    #family: monospace
+    family: "Terminus"
 
     # The `style` can be specified to pick a specific face.
     #style: Italic
@@ -132,7 +135,8 @@ font:
     #
     # If the bold italic family is not specified, it will fall back to the
     # value specified for the normal font.
-    family: terminus
+    #family: monospace
+    family: "Terminus"
 
     # The `style` can be specified to pick a specific face.
     #style: Bold Italic
@@ -143,15 +147,15 @@ font:
   # Offset is the extra space around each character. `offset.y` can be thought of
   # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
   #offset:
-  #  x: 0
-  #  y: 0
+  #x: 0
+  #y: 0
 
   # Glyph offset determines the locations of the glyphs within their cells with
   # the default being at the bottom. Increasing `x` moves the glyph to the right,
   # increasing `y` moves the glyph upward.
   #glyph_offset:
-  #  x: 0
-  #  y: 0
+  #x: 0
+  #y: 0
 
   # Thin stroke font rendering (macOS only)
   #
@@ -161,6 +165,35 @@ font:
 
 # If `true`, bold text is drawn using the bright color variants.
 #draw_bold_text_with_bright_colors: false
+
+# https://github.com/alacritty/alacritty/wiki/Color-schemes
+
+# Colors (Molokai Dark)
+#colors:
+#  # Default colors
+#  primary:
+#    background: '#1B1D1E'
+#    foreground: '#F8F8F2'
+#  # Normal colors
+#  normal:
+#    black:   '#333333'
+#    red:     '#C4265E'
+#    green:   '#86B42B'
+#    yellow:  '#B3B42B'
+#    blue:    '#6A7EC8'
+#    magenta: '#8C6BC8'
+#    cyan:    '#56ADBC'
+#    white:   '#E3E3DD'
+#  # Bright colors
+#  bright:
+#    black:   '#666666'
+#    red:     '#F92672'
+#    green:   '#A6E22E'
+#    yellow:  '#E2E22E'
+#    blue:    '#819AFF'
+#    magenta: '#AE81FF'
+#    cyan:    '#66D9EF'
+#    white:   '#F8F8F2'
 
 # Colors (Tomorrow Night)
 #colors:
@@ -210,16 +243,17 @@ font:
   # Search colors
   #
   # Colors used for the search bar and match highlighting.
+  #
+  # Allowed values are CellForeground and CellBackground, which reference the
+  # affected cell, or hexadecimal colors like #ff00ff.
   #search:
-    # Allowed values are CellForeground and CellBackground, which reference the
-    # affected cell, or hexadecimal colors like #ff00ff.
-    #matches:
-    #  foreground: '#000000'
-    #  background: '#ffffff'
-
-    #bar:
-    #  background: '#c5c8c6'
-    #  foreground: '#1d1f21'
+  #  matches:
+  #    foreground: '#000000'
+  #    background: '#ffffff'
+  #
+  #  bar:
+  #    background: CellForeground
+  #    foreground: CellBackground
 
   # Normal colors
   #normal:
@@ -346,7 +380,7 @@ font:
   #thickness: 0.15
 
 # Live config reload (changes require restart)
-#live_config_reload: true
+live_config_reload: true
 
 # Shell
 #
@@ -381,7 +415,7 @@ font:
 # Send ESC (\x1b) before characters when alt is pressed.
 #alt_send_esc: true
 
-#mouse:
+mouse:
   # Click settings
   #
   # The `double_click` and `triple_click` settings control the time
@@ -391,7 +425,7 @@ font:
   #triple_click: { threshold: 300 }
 
   # If this is `true`, the cursor is temporarily hidden when typing.
-  #hide_when_typing: false
+  hide_when_typing: false
 
   #url:
     # URL launcher
