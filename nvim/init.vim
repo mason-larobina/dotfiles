@@ -12,7 +12,13 @@ Plug 'neovim/nvim-lspconfig'
 
 Plug 'farmergreg/vim-lastplace'
 
+Plug 'preservim/nerdtree'
+
+Plug 'vim-airline/vim-airline'
+
 call plug#end()
+
+let g:airline_symbols_ascii = 1
 
 colorscheme molokai
 
