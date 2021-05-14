@@ -16,6 +16,8 @@ Plug 'preservim/nerdtree'
 
 Plug 'vim-airline/vim-airline'
 
+Plug 'preservim/nerdtree'
+
 call plug#end()
 
 let g:airline_symbols_ascii = 1
@@ -30,6 +32,7 @@ filetype plugin indent on
 syntax on
 
 set number
+set termguicolors
 
 map Q gqip
 
@@ -44,6 +47,7 @@ nnoremap <c-l> <c-w>l
 " Quick switch buffers
 nmap <c-n> :bnext<CR>
 nmap <c-p> :bprev<CR>
+nnoremap <leader>d :bdelete<CR>
 
 " Clear search on enter
 nnoremap <cr> :nohlsearch<cr>
@@ -61,3 +65,7 @@ autocmd BufWinEnter * match ExtraWhitespace /\s\+$/
 autocmd InsertEnter * match ExtraWhitespace /\s\+\%#\@<!$/
 autocmd InsertLeave * match ExtraWhitespace /\s\+$/
 autocmd BufWinLeave * call clearmatches()
+
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+nnoremap <C-f> :NERDTreeFind<CR>
