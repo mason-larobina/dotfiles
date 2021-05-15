@@ -18,6 +18,8 @@ Plug 'vim-airline/vim-airline'
 
 Plug 'preservim/nerdtree'
 
+Plug 'dag/vim-fish'
+
 call plug#end()
 
 let g:airline_symbols_ascii = 1
