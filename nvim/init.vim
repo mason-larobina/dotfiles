@@ -12,6 +12,8 @@ Plug 'neovim/nvim-lspconfig'
 
 Plug 'farmergreg/vim-lastplace'
 
+Plug 'dag/vim-fish'
+
 call plug#end()
 
 colorscheme molokai
@@ -20,8 +22,8 @@ runtime work.vim
 
 runtime coc.vim
 
+syntax enable
 filetype plugin indent on
-syntax on
 
 set number
 
