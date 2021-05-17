@@ -1,5 +1,7 @@
 set nocompatible
 
+let mapleader = "\<Space>"
+
 call plug#begin('~/.config/nvim/plugins')
 
 Plug 'easymotion/vim-easymotion'
@@ -38,7 +40,6 @@ set termguicolors
 
 map Q gqip
 
-let mapleader = "\<Space>"
 
 " Move around splits
 nnoremap <c-j> <c-w>j
