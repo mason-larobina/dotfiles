@@ -1,0 +1,33 @@
+live_config_reload = true
+
+[window]
+decorations = "Full"
+startup_mode = "Maximized"
+
+[font]
+# NOTE: use fc-list to get correct ttf font names
+normal = { family = "Terminess Nerd Font", style = "Regular" }
+bold = { family = "Terminess Nerd Font", style = "Bold" }
+italic = { family = "Terminess Nerd Font", style = "Italic" }
+bold_italic = { family = "Terminess Nerd Font", style = "Bold Italic" }
+size = 10
+
+[mouse]
+hide_when_typing = true
+
+[keyboard]
+bindings = [
+{ key = "N", mods = "Control|Shift", action = "CreateNewWindow" },
+{ key = "+", mods = "Control|Shift", action = "IncreaseFontSize" },
+{ key = "_", mods = "Control|Shift", action = "ResetFontSize" },
+{ key = "F", mods = "Control|Shift", action = "ToggleFullscreen" },
+]
+
+# [[hints.enabled]]
+# command = "xdg-open"
+# hyperlinks = true
+# post_processing = true
+# persist = false
+# mouse.enabled = true
+# binding = { key = "U", mods = "Control|Shift" }
+# regex = "(ipfs:|ipns:|magnet:|mailto:|gemini://|gopher://|https://|http://|news:|file:|git://|ssh:|ftp://)[^\u0000-\u001F\u007F-\u009F<>\"\\s{-}\\^⟨⟩`]+"

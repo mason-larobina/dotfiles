@@ -1,5 +1,8 @@
 [user]
-	email = mason.larobina@gmail.com
 	name = Mason Larobina
-[push]
-	default = simple
+	email = mason.larobina@pm.me
+[core]
+	eol = lf
+	autocrlf = input
+[init]
+	defaultBranch = main
