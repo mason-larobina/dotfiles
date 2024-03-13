@@ -41,6 +41,7 @@ bindkey -M vicmd v edit-command-line
 setopt PROMPT_SUBST
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats ' %F{203} %b%f '  # Soft orange for git branch
-PROMPT='%F{250}[%f %F{153} %n@%m%f  %F{157}  %~%f %F{214}${vcs_info_msg_0_}%f%F{250}]%f
-%B%F{214}>%f%b '
+SEP="%F{250}|%f"
+zstyle ':vcs_info:git:*' formats $SEP' %F{203} %b%f '  # Soft orange for git branch
+PROMPT='  -%F{250}%f %F{153} %n '$SEP' %F{214}  %m%f '$SEP' %F{157}  %~%f %F{214}${vcs_info_msg_0_}%f%F{250}-%f
+%B%F{214}  %f%b '
