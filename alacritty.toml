@@ -1,0 +1,29 @@
+live_config_reload = true
+
+[font]
+size = 12.0
+
+[font.bold]
+family = "Terminess Nerd Font"
+
+[font.bold_italic]
+family = "Terminess Nerd Font"
+
+[font.italic]
+family = "Terminess Nerd Font"
+
+[font.normal]
+family = "Terminess Nerd Font"
+
+[mouse]
+hide_when_typing = true
+
+[scrolling]
+history = 1000
+
+[window]
+decorations = "none"
+dynamic_padding = true
+dynamic_title = true
+startup_mode = "Maximized"
+padding = { x = 8, y = 8 }
