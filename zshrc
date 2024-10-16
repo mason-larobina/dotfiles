@@ -55,6 +55,6 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats ' %F{203} %b%f '
 RPROMPT='${vcs_info_msg_0_}'
-PROMPT='%F{10}%~% %B%F{220} > %f%b'
+PROMPT='%F{10}%~%F{220} %B> %f%b'
 
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh

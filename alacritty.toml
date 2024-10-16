@@ -1,19 +1,16 @@
 live_config_reload = true
 
 [font]
-size = 12.0
+size = 12
 
 [font.bold]
-family = "Terminess Nerd Font"
-
+family = "JetBrainsMonoNerdFont"
 [font.bold_italic]
-family = "Terminess Nerd Font"
-
+family = "JetBrainsMonoNerdFont"
 [font.italic]
-family = "Terminess Nerd Font"
-
+family = "JetBrainsMonoNerdFont"
 [font.normal]
-family = "Terminess Nerd Font"
+family = "JetBrainsMonoNerdFont"
 
 [mouse]
 hide_when_typing = true
@@ -26,4 +23,4 @@ decorations = "none"
 dynamic_padding = true
 dynamic_title = true
 startup_mode = "Maximized"
-padding = { x = 8, y = 8 }
+padding = { x = 12, y = 12 }
