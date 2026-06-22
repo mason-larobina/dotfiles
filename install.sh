@@ -10,21 +10,24 @@
 # from the AUR first, then used to install both native and AUR packages.
 #
 # Usage:
-#   ./install.sh [--desktop] [--dev] [--gaming] [--ai] [--amd-cpu] [--amd-gpu]
-#                [--intel-cpu] [--all] [--dry-run] [-h|--help]
+#   ./install.sh [--desktop] [--dev] [--gaming] [--amd-gpu]
+#                [--all] [--dry-run] [-h|--help]
 
 set -euo pipefail
 
 # --- Package categories ------------------------------------------------------
 
-# Always installed.
+# Always installed. Both microcode packages are included; the bootloader only
+# loads the one matching the running CPU, so shipping both is harmless.
 core=(
 	7zip
+	amd-ucode
 	base
 	base-devel
 	btop
 	fwupd
 	git
+	intel-ucode
 	less
 	linux
 	linux-firmware
@@ -42,19 +45,9 @@ core=(
 	zsh-syntax-highlighting
 )
 
-# AMD CPU microcode. Skip on Intel hardware.
-amd_cpu=(
-	amd-ucode
-)
-
 # AMD GPU tooling. Skip on Nvidia/Intel graphics.
 amd_gpu=(
 	amdgpu_top
-)
-
-# Intel CPU microcode. Skip on AMD hardware.
-intel_cpu=(
-	intel-ucode
 )
 
 # KDE Plasma desktop, GUI applications, and media.
@@ -91,11 +84,6 @@ dev=(
 	podman-compose
 )
 
-# Local LLM inference.
-ai=(
-	llama.cpp-vulkan
-)
-
 # Gaming.
 gaming=(
 	steam
@@ -112,28 +100,22 @@ usage() {
 		  --desktop   KDE Plasma desktop, GUI apps, and media
 		  --dev       Development tooling (IDE, JDK, podman, ...)
 		  --gaming    Steam
-		  --ai        Local LLM inference (llama.cpp)
-		  --amd-cpu   AMD CPU microcode (amd-ucode)
 		  --amd-gpu   AMD GPU tooling (amdgpu_top)
-		  --intel-cpu Intel CPU microcode (intel-ucode)
 		  --all       Enable every category above
 		  --dry-run   Print the resolved package list and exit
 		  -h, --help  Show this help and exit
 	EOF
 }
 
-want_desktop=0 want_dev=0 want_gaming=0 want_ai=0 want_amd_cpu=0 want_amd_gpu=0 want_intel_cpu=0 dry_run=0
+want_desktop=0 want_dev=0 want_gaming=0 want_amd_gpu=0 dry_run=0
 
 for arg in "$@"; do
 	case "$arg" in
 	--desktop) want_desktop=1 ;;
 	--dev) want_dev=1 ;;
 	--gaming) want_gaming=1 ;;
-	--ai) want_ai=1 ;;
-	--amd-cpu) want_amd_cpu=1 ;;
 	--amd-gpu) want_amd_gpu=1 ;;
-	--intel-cpu) want_intel_cpu=1 ;;
-	--all) want_desktop=1 want_dev=1 want_gaming=1 want_ai=1 want_amd_cpu=1 want_amd_gpu=1 want_intel_cpu=1 ;;
+	--all) want_desktop=1 want_dev=1 want_gaming=1 want_amd_gpu=1 ;;
 	--dry-run) dry_run=1 ;;
 	-h | --help)
 		usage
@@ -152,17 +134,9 @@ done
 packages=("${core[@]}")
 selected=(core)
 
-if ((want_amd_cpu)); then
-	packages+=("${amd_cpu[@]}")
-	selected+=(amd-cpu)
-fi
 if ((want_amd_gpu)); then
 	packages+=("${amd_gpu[@]}")
 	selected+=(amd-gpu)
-fi
-if ((want_intel_cpu)); then
-	packages+=("${intel_cpu[@]}")
-	selected+=(intel-cpu)
 fi
 if ((want_desktop)); then
 	packages+=("${desktop[@]}")
@@ -171,10 +145,6 @@ fi
 if ((want_dev)); then
 	packages+=("${dev[@]}")
 	selected+=(dev)
-fi
-if ((want_ai)); then
-	packages+=("${ai[@]}")
-	selected+=(ai)
 fi
 if ((want_gaming)); then
 	packages+=("${gaming[@]}")
