@@ -24,7 +24,7 @@ symlinks and refuses to overwrite real files (it prints a warning instead).
 
 ## Install (Arch Linux)
 
-`install.sh` installs the package set for a new Arch machine. A "core" category
+`install.py` installs the package set for a new Arch machine. A "core" category
 (shell, editor, basic CLI tooling) is always installed; everything else is opt-in
 per category, so each machine only pulls in what it needs:
 
@@ -34,14 +34,13 @@ per category, so each machine only pulls in what it needs:
 | `--desktop` | KDE Plasma desktop, GUI apps, and media             |
 | `--dev`     | Development tooling (IDE, JDK, podman, …)           |
 | `--gaming`  | Steam                                               |
-| `--ai`      | Local LLM inference (llama.cpp)                     |
-| `--amd`     | AMD CPU/GPU packages (microcode, `amdgpu_top`)      |
+| `--amd-gpu` | AMD GPU tooling (`amdgpu_top`)                      |
 | `--all`     | Every category above                                |
 
 ```sh
-~/.dotfiles/install.sh --desktop --dev          # workstation
-~/.dotfiles/install.sh --desktop --gaming --amd  # gaming box
-~/.dotfiles/install.sh                           # headless / core only
+~/.dotfiles/install.py --desktop --dev               # workstation
+~/.dotfiles/install.py --desktop --gaming --amd-gpu  # gaming box
+~/.dotfiles/install.py                                # headless / core only
 ```
 
 Use `--dry-run` to print the resolved package list without installing, or
