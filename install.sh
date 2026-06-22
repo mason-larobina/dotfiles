@@ -10,8 +10,8 @@
 # from the AUR first, then used to install both native and AUR packages.
 #
 # Usage:
-#   ./install.sh [--desktop] [--dev] [--gaming] [--ai] [--amd] [--all]
-#                [--dry-run] [-h|--help]
+#   ./install.sh [--desktop] [--dev] [--gaming] [--ai] [--amd-cpu] [--amd-gpu]
+#                [--intel-cpu] [--all] [--dry-run] [-h|--help]
 
 set -euo pipefail
 
@@ -19,34 +19,87 @@ set -euo pipefail
 
 # Always installed.
 core=(
-	base base-devel linux linux-firmware
-	git neovim tmux zsh zsh-syntax-highlighting
-	btop less man-db wget rsync openssh 7zip sshfs
-	fwupd power-profiles-daemon
-	tailscale nss-mdns
+	7zip
+	base
+	base-devel
+	btop
+	fwupd
+	git
+	less
+	linux
+	linux-firmware
+	man-db
+	neovim
+	nss-mdns
+	openssh
+	power-profiles-daemon
+	rsync
+	sshfs
+	tailscale
+	tmux
+	wget
+	zsh
+	zsh-syntax-highlighting
 )
 
-# AMD CPU/GPU specific. Skip on Intel/Nvidia hardware.
-amd=(amd-ucode amdgpu_top)
+# AMD CPU microcode. Skip on Intel hardware.
+amd_cpu=(
+	amd-ucode
+)
+
+# AMD GPU tooling. Skip on Nvidia/Intel graphics.
+amd_gpu=(
+	amdgpu_top
+)
+
+# Intel CPU microcode. Skip on AMD hardware.
+intel_cpu=(
+	intel-ucode
+)
 
 # KDE Plasma desktop, GUI applications, and media.
 desktop=(
-	plasma-meta alacritty ttf-terminus-nerd
-	dolphin ark gwenview okular kate kcalc filelight
-	kdegraphics-thumbnailers ffmpegthumbs skanpage
-	keepassxc firefox cups
-	vlc vlc-plugin-srt vlc-plugin-x264 vlc-plugin-x265 vlc-plugins-all
-	yt-dlp qbittorrent
+	alacritty
+	ark
+	cups
+	dolphin
+	ffmpegthumbs
+	filelight
+	firefox
+	gwenview
+	kate
+	kcalc
+	kdegraphics-thumbnailers
+	keepassxc
+	okular
+	plasma-meta
+	qbittorrent
+	skanpage
+	ttf-terminus-nerd
+	vlc
+	vlc-plugins-all
+	yt-dlp
 )
 
 # Development tooling.
-dev=(intellij-idea-community-edition jdk-openjdk claude-code python-jinja podman podman-compose)
+dev=(
+	intellij-idea-community-edition
+	jdk-openjdk
+	claude-code
+	python-jinja
+	podman
+	podman-compose
+)
 
 # Local LLM inference.
-ai=(llama.cpp-vulkan)
+ai=(
+	llama.cpp-vulkan
+)
 
 # Gaming.
-gaming=(steam)
+gaming=(
+	steam
+)
 
 # --- Flag parsing ------------------------------------------------------------
 
@@ -60,33 +113,37 @@ usage() {
 		  --dev       Development tooling (IDE, JDK, podman, ...)
 		  --gaming    Steam
 		  --ai        Local LLM inference (llama.cpp)
-		  --amd       AMD CPU/GPU packages (microcode, amdgpu_top)
+		  --amd-cpu   AMD CPU microcode (amd-ucode)
+		  --amd-gpu   AMD GPU tooling (amdgpu_top)
+		  --intel-cpu Intel CPU microcode (intel-ucode)
 		  --all       Enable every category above
 		  --dry-run   Print the resolved package list and exit
 		  -h, --help  Show this help and exit
 	EOF
 }
 
-want_desktop=0 want_dev=0 want_gaming=0 want_ai=0 want_amd=0 dry_run=0
+want_desktop=0 want_dev=0 want_gaming=0 want_ai=0 want_amd_cpu=0 want_amd_gpu=0 want_intel_cpu=0 dry_run=0
 
 for arg in "$@"; do
 	case "$arg" in
-		--desktop) want_desktop=1 ;;
-		--dev) want_dev=1 ;;
-		--gaming) want_gaming=1 ;;
-		--ai) want_ai=1 ;;
-		--amd) want_amd=1 ;;
-		--all) want_desktop=1 want_dev=1 want_gaming=1 want_ai=1 want_amd=1 ;;
-		--dry-run) dry_run=1 ;;
-		-h | --help)
-			usage
-			exit 0
-			;;
-		*)
-			echo "error: unknown option '$arg'" >&2
-			usage >&2
-			exit 1
-			;;
+	--desktop) want_desktop=1 ;;
+	--dev) want_dev=1 ;;
+	--gaming) want_gaming=1 ;;
+	--ai) want_ai=1 ;;
+	--amd-cpu) want_amd_cpu=1 ;;
+	--amd-gpu) want_amd_gpu=1 ;;
+	--intel-cpu) want_intel_cpu=1 ;;
+	--all) want_desktop=1 want_dev=1 want_gaming=1 want_ai=1 want_amd_cpu=1 want_amd_gpu=1 want_intel_cpu=1 ;;
+	--dry-run) dry_run=1 ;;
+	-h | --help)
+		usage
+		exit 0
+		;;
+	*)
+		echo "error: unknown option '$arg'" >&2
+		usage >&2
+		exit 1
+		;;
 	esac
 done
 
@@ -95,16 +152,57 @@ done
 packages=("${core[@]}")
 selected=(core)
 
-if ((want_amd)); then packages+=("${amd[@]}"); selected+=(amd); fi
-if ((want_desktop)); then packages+=("${desktop[@]}"); selected+=(desktop); fi
-if ((want_dev)); then packages+=("${dev[@]}"); selected+=(dev); fi
-if ((want_ai)); then packages+=("${ai[@]}"); selected+=(ai); fi
-if ((want_gaming)); then packages+=("${gaming[@]}"); selected+=(gaming); fi
+if ((want_amd_cpu)); then
+	packages+=("${amd_cpu[@]}")
+	selected+=(amd-cpu)
+fi
+if ((want_amd_gpu)); then
+	packages+=("${amd_gpu[@]}")
+	selected+=(amd-gpu)
+fi
+if ((want_intel_cpu)); then
+	packages+=("${intel_cpu[@]}")
+	selected+=(intel-cpu)
+fi
+if ((want_desktop)); then
+	packages+=("${desktop[@]}")
+	selected+=(desktop)
+fi
+if ((want_dev)); then
+	packages+=("${dev[@]}")
+	selected+=(dev)
+fi
+if ((want_ai)); then
+	packages+=("${ai[@]}")
+	selected+=(ai)
+fi
+if ((want_gaming)); then
+	packages+=("${gaming[@]}")
+	selected+=(gaming)
+fi
 
 echo "Selected categories: ${selected[*]}"
 
+# List explicitly-installed packages that the selected categories don't account
+# for. These are manual installs / drift worth folding into a category (or
+# removing). yay is expected here since it bootstraps the rest.
+drift_report() {
+	echo
+	echo "Explicitly installed packages not covered by the selected categories:"
+	local untracked
+	untracked="$(comm -23 \
+		<(pacman -Qqe | sort -u) \
+		<(printf '%s\n' "${packages[@]}" | sort -u))"
+	if [[ -n "$untracked" ]]; then
+		printf '  %s\n' $untracked
+	else
+		echo "  (none)"
+	fi
+}
+
 if ((dry_run)); then
 	printf '%s\n' "${packages[@]}"
+	drift_report
 	exit 0
 fi
 
@@ -139,3 +237,5 @@ fi
 yay -S --needed "${packages[@]}"
 
 echo "Done."
+
+drift_report
