@@ -15,7 +15,7 @@ declare -A LINKS=(
 	[zshenv]="$HOME/.zshenv"
 	[tmux.conf]="$HOME/.tmux.conf"
 	[gitconfig]="$HOME/.gitconfig"
-	[alacritty.toml]="$HOME/.config/alacritty/alacritty.toml"
+	[alacritty.toml]="$HOME/.config/alacritty.toml"
 )
 
 for src in "${!LINKS[@]}"; do

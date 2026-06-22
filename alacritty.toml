@@ -1,5 +1,5 @@
 # Alacritty terminal configuration.
-# Symlinked to ~/.config/alacritty/alacritty.toml (see link.sh).
+# Symlinked to ~/.config/alacritty.toml (see link.sh).
 
 [general]
 live_config_reload = true
