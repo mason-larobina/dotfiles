@@ -46,14 +46,14 @@ bindkey -M vicmd v edit-command-line
 
 # Alias
 
-alias ls="ls --color=auto"
+alias yt="yt-dlp --cookies-from-browser firefox"
 
 # Prompt
 
 setopt PROMPT_SUBST
 autoload -Uz vcs_info
 precmd() { vcs_info }
-zstyle ':vcs_info:git:*' formats ' %F{203} %b%f '
+zstyle ':vcs_info:git:*' formats '%F{203}  %b%f'
 RPROMPT='${vcs_info_msg_0_}'
 PROMPT='%F{10}%~%F{220} %B> %f%b'
 

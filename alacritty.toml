@@ -1,16 +1,17 @@
+[general]
 live_config_reload = true
 
 [font]
 size = 12
 
 [font.bold]
-family = "JetBrainsMonoNerdFont"
+family = "Terminess Nerd Font"
 [font.bold_italic]
-family = "JetBrainsMonoNerdFont"
+family = "Terminess Nerd Font"
 [font.italic]
-family = "JetBrainsMonoNerdFont"
+family = "Terminess Nerd Font"
 [font.normal]
-family = "JetBrainsMonoNerdFont"
+family = "Terminess Nerd Font"
 
 [mouse]
 hide_when_typing = true
