@@ -1,9 +1,14 @@
+# Alacritty terminal configuration.
+# Symlinked to ~/.config/alacritty/alacritty.toml (see link.sh).
+
 [general]
 live_config_reload = true
 
 [font]
 size = 12
 
+# All four variants share one Nerd Font family so glyphs render consistently
+# regardless of bold/italic styling.
 [font.bold]
 family = "Terminess Nerd Font"
 [font.bold_italic]

@@ -1,3 +1,5 @@
+# Global git configuration. Symlinked to ~/.gitconfig (see link.sh).
+
 [user]
 	name = Mason Larobina
 	email = mason.larobina@pm.me

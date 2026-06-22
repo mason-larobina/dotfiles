@@ -1,15 +1,18 @@
+# Interactive Zsh configuration. Symlinked to ~/.zshrc (see link.sh).
+
+# Initialize the completion and prompt systems.
 autoload -Uz compinit promptinit
 compinit
 promptinit
 
 # Options
 
-setopt interactivecomments 	    # allow comments in commands
+setopt interactivecomments       # Allow comments in interactive commands.
 
 # Navigation options
 
-setopt autocd  			        # Go to folder path without using cd.
-setopt extendedglob 		    # Use extended globbing syntax.
+setopt autocd                    # Go to folder path without using cd.
+setopt extendedglob              # Use extended globbing syntax.
 
 # History options
 
@@ -49,6 +52,12 @@ bindkey -M vicmd v edit-command-line
 alias yt="yt-dlp --cookies-from-browser firefox"
 
 # Prompt
+#
+# Left prompt: working directory then a bold separator. Right prompt: the current
+# git branch via vcs_info. Color codes are 256-color indices (%F{n}):
+#   10  green  - working directory
+#   220 yellow - prompt separator
+#   203 red    - git branch name
 
 setopt PROMPT_SUBST
 autoload -Uz vcs_info
@@ -57,4 +66,6 @@ zstyle ':vcs_info:git:*' formats '%F{203}  %b%f'
 RPROMPT='${vcs_info_msg_0_}'
 PROMPT='%F{10}%~%F{220} %B> %f%b'
 
+# Fish-like syntax highlighting (Arch package: zsh-syntax-highlighting). Must be
+# sourced last so it wraps the final widget set.
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
