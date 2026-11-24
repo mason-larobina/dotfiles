@@ -53,8 +53,10 @@ alias yt="yt-dlp --cookies-from-browser firefox"
 
 # Prompt
 #
-# Left prompt: working directory then a bold separator. Right prompt: the current
-# git branch via vcs_info. Color codes are 256-color indices (%F{n}):
+# Left prompt: short hostname, working directory, then a bold separator. Right
+# prompt: the current git branch via vcs_info. Color codes are 256-color indices
+# (%F{n}):
+#   244 grey   - hostname
 #   10  green  - working directory
 #   220 yellow - prompt separator
 #   203 red    - git branch name
@@ -64,7 +66,7 @@ autoload -Uz vcs_info
 precmd() { vcs_info }
 zstyle ':vcs_info:git:*' formats '%F{203}  %b%f'
 RPROMPT='${vcs_info_msg_0_}'
-PROMPT='%F{10}%~%F{220} %B> %f%b'
+PROMPT='%F{244}%m%f %F{10}%~%F{220} %B> %f%b'
 
 # Fish-like syntax highlighting (Arch package: zsh-syntax-highlighting). Must be
 # sourced last so it wraps the final widget set.
